@@ -47,7 +47,8 @@ reconst_error = norm( R - T )
 
 - `learning_rate` : float, default: 0.01
   - The learning rate used in gradient descent method.
-
+  
+- `verbose` : bool, default: true
 
 
 ## Licence
