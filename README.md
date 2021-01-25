@@ -22,7 +22,7 @@ T = rand(8, 5, 3, 2)
 # run Legendre Decomposition in newton method
 R = TLD_newton(T)
 
-# compute reconstructed error in Fnorm.
+# compute reconstruction error in Fnorm.
 reconst_error = norm( R - T )
 ```
 
