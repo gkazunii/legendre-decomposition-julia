@@ -1,6 +1,5 @@
 using TensorToolbox
 using LinearAlgebra
-using Plots
 include("params.jl")
 include("newton_update.jl")
 

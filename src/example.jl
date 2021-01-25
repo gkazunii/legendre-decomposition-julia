@@ -1,14 +1,18 @@
 using TensorToolbox
-using Plots
-include("params.jl")
+using Random
+using LinearAlgebra
+Random.seed!(3)
 include("LD.jl")
-include("newton_update.jl")
 
 function main()
-    T = normalize(rand( 100,100, 100),1)
+    T = rand( 100,100, 100)
+    R = TLD(T)
 
-    T_sugi  = TLD(T)
-    T_sugiN = TLD_newton(T)
+    T = rand( 100,100, 100)
+    R_newton = TLD_newton(T)
+
+    println(" reconst_error by grad decent ",  norm(T - R) )
+    println(" reconst_error by newton method ", norm(T - R_newton) )
 end
 
 main()
