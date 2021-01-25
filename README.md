@@ -8,7 +8,7 @@ An implementation of Legendre Decomposition for CP_rank-1 approximation in Julia
 An implementation of the Legendre Decomposition[[1]](https://papers.nips.cc/paper/8097-legendre-decomposition-for-tensors) in Julia(>=1.5), which is non-negative tensor decomposition method using information geometric formulation of the log-linear model. This implementation is only for CP_rank-1 approximation.
 
 This is not an official implementation and the author's implementation in C++ is available here [[2]](https://github.com/mahito-sugiyama/Legendre-decomposition).
-Implementation in python is also available here [[3]](https://github.com/Yhkwkm/legendre-decomposition-python)
+Implementation in python is also available here [[3]](https://github.com/Yhkwkm/legendre-decomposition-python).
 
 
 
