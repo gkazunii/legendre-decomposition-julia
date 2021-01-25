@@ -2,14 +2,13 @@ using TensorToolbox
 using LinearAlgebra
 using Plots
 include("params.jl")
-include("TL1RR.jl")
 include("newton_update.jl")
 
 function D_KL(A, B)
     return sum(A .* log.( A ./ B ) ) - sum(A) + sum(B)
 end
 
-function TLD_newton(T, cnt_max=20, tol = 1.0e-5)
+function TLD_newton(T, cnt_max=20, tol = 1.0e-5, verbose = true)
     tensor_shape = size(T)
     sumt = sum(T)
     T .= T ./ sumt
@@ -34,18 +33,20 @@ function TLD_newton(T, cnt_max=20, tol = 1.0e-5)
         cnt += 1
         dkl = D_KL(T, R)
         append!(dkls, dkl)
-        println("step $cnt newton error $dkl cost $dif")
+        if verbose
+            println("step $cnt decent error $dkl ||eat - eta_beta||_F $dif")
+        end
         if dif < tol
             break
         end
     end
 
     R = sumt * R
-    return R, dkls
+    return R
 end
 
 
-function TLD(T, cnt_max=100, lr=0.01, tol = 1.0e-5)
+function TLD(T, cnt_max=100, lr=0.01, tol = 1.0e-5, verbose=true)
     tensor_shape = size(T)
     d = ndims(T)
     sumt = sum(T)
@@ -76,14 +77,16 @@ function TLD(T, cnt_max=100, lr=0.01, tol = 1.0e-5)
         cnt += 1
         dkl = D_KL(T,R)
         append!(dkls, dkl)
-        println("step $cnt grad_decent error $dkl")
-
         dif = norm(eta - eta_beta)
+
+        if verbose
+            println("step $cnt decent error $dkl ||eat - eta_beta||_F $dif")
+        end
         if dif < tol
             break
         end
     end
 
     R = sumt * R
-    return R, dkls
+    return R
 end
